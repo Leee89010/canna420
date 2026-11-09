@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Styles et dérivés — Guide visuel</title>
+<meta name="description" content="Fleur, hash, static, frozen, rosin, piatella, dry sift et bubble hash : explications et comparaison saveur, effet, prix.">
+<meta name="theme-color" content="#070810">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#070810;--smoke:#0e1020;--line:#23263d;--text:#e9eaf6;--dim:#9a9db8;--pink:#ff3d8b;--cyan:#3df0ff;--violet:#8a5bff;
+  --display:'Unbounded','Arial Black',sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink);scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--text);background:var(--ink);line-height:1.6;font-size:17px;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+.btn{font:500 1rem var(--body);cursor:pointer;border:1px solid var(--pink);background:transparent;color:var(--text);padding:10px 20px;border-radius:999px;margin:4px 4px 4px 0;text-decoration:none;display:inline-block;transition:background .2s,box-shadow .2s}
+.btn:hover{background:rgba(255,61,139,.14);box-shadow:0 0 18px rgba(255,61,139,.5)}
+.btn.ghost{border-color:var(--line);color:var(--dim)}
+.btn.ghost:hover{box-shadow:none;background:var(--smoke)}
+#gate{position:fixed;inset:0;z-index:50;background:rgba(7,8,16,.97);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+#gate[hidden]{display:none}
+#gate h2{font-family:var(--display);font-size:1.5rem;margin-bottom:12px}
+#gate p{color:var(--dim);max-width:34ch;margin:0 auto 24px}
+header{position:sticky;top:0;z-index:20;background:rgba(7,8,16,.86);backdrop-filter:blur(10px);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--display);font-weight:700;text-decoration:none;font-size:1.05rem}
+nav a{margin-left:20px;text-decoration:none;color:var(--dim);font-size:.95rem}
+nav a:hover,nav a[aria-current]{color:var(--text)}
+.intro{padding:56px 0 30px;position:relative}
+.intro::before{content:"";position:absolute;inset:-40% -10% auto auto;width:60vw;height:60vw;max-width:640px;max-height:640px;background:radial-gradient(circle,rgba(138,91,255,.25),transparent 62%);pointer-events:none}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,5vw,3rem);line-height:1.12;letter-spacing:-.02em;position:relative}
+.lead{color:var(--dim);max-width:56ch;margin-top:18px;position:relative}
+.legend{display:grid;gap:10px 26px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:30px 0 8px;color:var(--dim);font-size:.93rem}
+.legend b{color:var(--text);font-weight:500}
+.sort{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:22px 0 10px}
+.sort span{color:var(--dim);font-size:.92rem;margin-right:6px}
+.sort button{font:500 .93rem var(--body);cursor:pointer;color:var(--dim);background:none;border:1px solid var(--line);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s,box-shadow .2s}
+.sort button:hover{color:var(--text)}
+.sort button[aria-pressed="true"]{color:var(--text);border-color:var(--cyan);box-shadow:0 0 14px rgba(61,240,255,.4)}
+.list{list-style:none;margin-bottom:40px}
+.p{display:grid;grid-template-columns:1.25fr .75fr;gap:14px 36px;padding:28px 0 28px 22px;border-top:1px solid var(--line);position:relative}
+.p::before{content:"";position:absolute;left:0;top:30px;bottom:30px;width:3px;border-radius:3px;background:var(--c);box-shadow:0 0 14px var(--c)}
+@media(max-width:700px){.p{grid-template-columns:1fr}}
+.p h2{font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent);margin-bottom:2px}
+.fam{color:var(--dim);font-size:.88rem;margin-bottom:10px}
+.p p{color:var(--dim);max-width:54ch}
+.ms{display:grid;gap:12px;align-content:center}
+.m{display:grid;grid-template-columns:64px 1fr;align-items:center;gap:12px;font-size:.92rem}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.seg i{height:9px;border-radius:5px;background:var(--line);transition:background .4s,box-shadow .4s}
+.seg i.on{background:var(--c);box-shadow:0 0 10px var(--c)}
+.pr .seg i.on{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.note{border-top:1px solid var(--line);padding:26px 0 46px;color:var(--dim);font-size:.88rem;max-width:80ch}
+.note p+p{margin-top:8px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--dim);font-size:.85rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.seg i{transition:none}}
+</style>
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt" hidden>
+  <div>
+    <h2 id="gt">Accès réservé aux adultes</h2>
+    <p>Ce site présente un travail de création web autour de la culture cannabis. Il s’adresse aux personnes de 18 ans et plus.</p>
+    <button class="btn" id="yes">J’ai +18 ans, entrer</button>
+    <a class="btn ghost" href="https://www.google.com">Quitter</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html">Léo</a>
+    <nav><a href="index.html">Accueil</a><a href="styles.html" aria-current="page">Styles</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <div class="wrap">
+      <h1>Fleur, hash, rosin : comprendre les styles.</h1>
+      <p class="lead">Huit formes que l’on croise dans la culture cannabis, expliquées simplement : ce que c’est, comment on l’obtient, et comment elles se comparent.</p>
+      <div class="legend">
+        <p><b>Saveur</b> : intensité et richesse des arômes (les terpènes).</p>
+        <p><b>Effet</b> : puissance relative généralement associée à la forme.</p>
+        <p><b>Prix</b> : niveau de prix relatif, de plus accessible à plus cher.</p>
+      </div>
+      <div class="sort" role="group" aria-label="Trier les styles">
+        <span>Trier par</span>
+        <button type="button" data-k="d" aria-pressed="true">Ordre classique</button>
+        <button type="button" data-k="s" aria-pressed="false">Saveur</button>
+        <button type="button" data-k="e" aria-pressed="false">Effet</button>
+        <button type="button" data-k="p" aria-pressed="false">Prix</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ol class="list" id="list">
+      <li class="p" style="--c:#b6ff3d" data-d="0" data-s="4" data-e="3" data-p="2">
+        <div><h2>La fleur</h2><div class="fam">La plante elle-même</div>
+        <p>Les têtes de la plante, séchées puis mises en cure. C’est la forme la plus naturelle : on y lit l’arôme, la couleur et la structure de la variété. Les saveurs viennent des terpènes, d’où l’importance d’une bonne cure et d’un stockage soigné.</p></div>
+      </li>
+      <li class="p" style="--c:#ff8a3d" data-d="1" data-s="3" data-e="3" data-p="2">
+        <div><h2>Le hash</h2><div class="fam">Résine pressée</div>
+        <p>La résine de la plante (les trichomes), séparée puis compressée en plaque ou en boule. C’est la forme traditionnelle, venue du Maroc, d’Afghanistan ou du Liban. Goût terreux et épicé, texture qui va du dur au souple.</p></div>
+      </li>
+      <li class="p" style="--c:#3df0ff" data-d="2" data-s="4" data-e="4" data-p="4">
+        <div><h2>Le static</h2><div class="fam">Résine récoltée à sec</div>
+        <p>La résine est captée sans eau ni solvant, grâce à l’électricité statique qui attire les trichomes sur un film ou une surface. Le résultat est très fin et très pur, avec un profil aromatique proche de la fleur d’origine.</p></div>
+      </li>
+      <li class="p" style="--c:#4d7bff" data-d="3" data-s="5" data-e="4" data-p="4">
+        <div><h2>Le frozen</h2><div class="fam">Plante congelée à la récolte</div>
+        <p>Désigne en général une résine issue de plantes congelées juste après la récolte, sans séchage, ce qui préserve davantage les terpènes. Selon les producteurs, elle est séparée à l’eau glacée ou à sec : le terme varie, demande toujours la méthode utilisée.</p></div>
+      </li>
+      <li class="p" style="--c:#ff3d8b" data-d="4" data-s="5" data-e="5" data-p="5">
+        <div><h2>La rosin</h2><div class="fam">Extrait sans solvant</div>
+        <p>Obtenue avec de la chaleur et de la pression, à partir de fleur ou de résine. Texture de sève ou de beurre, couleur dorée, arômes très présents. C’est l’une des formes les plus concentrées, donc les plus puissantes.</p></div>
+      </li>
+      <li class="p" style="--c:#8a5bff" data-d="5" data-s="4" data-e="4" data-p="3">
+        <div><h2>La piatella</h2><div class="fam">Résine pressée en plaque</div>
+        <p>Un hash pressé en forme de plaque, souvent à base de résine tamisée à sec. La texture est souple et malléable, le goût marqué. Là aussi, le terme varie selon les producteurs.</p></div>
+      </li>
+      <li class="p" style="--c:#ffd23d" data-d="6" data-s="4" data-e="3" data-p="3">
+        <div><h2>Le dry</h2><div class="fam">Résine tamisée à sec (dry sift)</div>
+        <p>La résine est séparée en tamisant la fleur sur des toiles de plus en plus fines, sans eau. Elle se présente en poudre claire (le kief), qu’on peut aussi presser. Arômes fidèles à la fleur, puissance moyenne selon le tamisage.</p></div>
+      </li>
+      <li class="p" style="--c:#3dffc4" data-d="7" data-s="4" data-e="4" data-p="4">
+        <div><h2>Le bubble hash</h2><div class="fam">Résine à l’eau glacée</div>
+        <p>La plante est agitée dans l’eau et la glace, puis filtrée à travers des sacs de maille de plus en plus fine. Les meilleures qualités fondent presque entièrement à la chaleur (« full melt »). Aromatique et très concentré.</p></div>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p>Les notes sont des repères généraux sur 5, pas des mesures : elles changent selon le producteur, le lot et la région.</p>
+      <p>Plus une forme est concentrée, plus ses effets sont intenses et variables d’une personne à l’autre. Cette page est informative, réservée aux adultes, et ne constitue ni une publicité ni une offre de produit.</p>
+    </div>
+  </div>
+</main>
+
+<footer><div class="wrap">© <span id="y">2026</span> Léo · Création web · Barcelone</div></footer>
+
+<script>
+(function(){
+  var gate=document.getElementById('gate'),ok=false;
+  try{ok=localStorage.getItem('age18')==='1'}catch(e){}
+  if(!ok){gate.hidden=false;document.getElementById('yes').focus()}
+  document.getElementById('yes').addEventListener('click',function(){try{localStorage.setItem('age18','1')}catch(e){}gate.hidden=true});
+  document.getElementById('y').textContent=new Date().getFullYear();
+
+  var list=document.getElementById('list'),items=[].slice.call(list.children);
+  var rows=[['Saveur','s'],['Effet','e'],['Prix','p']];
+  items.forEach(function(li){
+    var h='<div class="ms">';
+    rows.forEach(function(r){
+      var v=+li.dataset[r[1]],s='';
+      for(var i=1;i<=5;i++)s+='<i'+(i<=v?' class="on"':'')+'></i>';
+      h+='<div class="m'+(r[1]==='p'?' pr':'')+'" role="img" aria-label="'+r[0]+' : '+v+' sur 5"><span>'+r[0]+'</span><div class="seg">'+s+'</div></div>';
+    });
+    li.insertAdjacentHTML('beforeend',h+'</div>');
+  });
+  var bs=document.querySelectorAll('.sort button');
+  bs.forEach(function(b){b.addEventListener('click',function(){
+    var k=b.dataset.k;
+    bs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    items.slice().sort(function(a,c){
+      return k==='d'?a.dataset.d-c.dataset.d:(c.dataset[k]-a.dataset[k])||(a.dataset.d-c.dataset.d);
+    }).forEach(function(li){list.appendChild(li)});
+  })});
+})();
+</script>
+</body>
+</html>
