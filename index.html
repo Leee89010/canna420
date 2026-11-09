@@ -48,6 +48,7 @@ nav a:hover{color:var(--text)}
 
 /* hero */
 .hero{position:relative;padding:72px 0 56px;overflow:hidden;background:#070810}
+  -webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent);
 .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:70vw;height:70vw;max-width:760px;max-height:760px;
   background:radial-gradient(circle,rgba(138,91,255,.28),transparent 62%);pointer-events:none}
 .hero .wrap{display:grid;gap:36px;grid-template-columns:1.25fr .75fr;align-items:center;position:relative}
