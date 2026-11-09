@@ -26,6 +26,26 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
 
+<style>
+/* formulaire de contact */
+.form{display:grid;gap:16px;max-width:600px;margin:0 auto;text-align:left}
+.form .row{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.form .row{grid-template-columns:1fr}}
+.form label{display:grid;gap:6px;font-size:.92rem;color:var(--dim)}
+.form input,.form select,.form textarea{font:400 1rem var(--body);color:var(--text);background:var(--smoke);
+  border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
+.form textarea{min-height:130px;resize:vertical}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 14px rgba(61,240,255,.35)}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .send{justify-self:start;margin:0}
+.form .send[disabled]{opacity:.5;cursor:wait}
+.form-status{min-height:1.6em;font-size:.95rem}
+.form-status.ok{color:#7dffb0}
+.form-status.ko{color:var(--pink)}
+.form-note{color:var(--dim);font-size:.82rem}
+.quick{margin-top:28px}
+</style>
+
 /* age gate */
 #gate{position:fixed;inset:0;z-index:50;background:rgba(7,8,16,.97);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
 #gate[hidden]{display:none}
@@ -279,13 +299,53 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
   </section>
 
   <section id="contact" class="contact">
-    <div class="wrap">
-      <h2>Discutons de votre club</h2>
-      <p class="sub">Un message avec le nom du club, le quartier et vos références visuelles suffit pour démarrer.</p>
-      <a class="mail" href="mailto:contact@exemple.com">contact@exemple.com</a>
-      <p style="margin-top:22px"><a class="btn ghost" href="https://github.com/Leee89010" rel="noopener">GitHub</a></p>
-    </div>
-  </section>
+  <div class="wrap">
+    <h2>Discutons de votre club</h2>
+    <p class="sub">Dites-moi le nom du club, le quartier et l’ambiance que vous imaginez. Je réponds en général sous 48 h.</p>
+ 
+    <!-- REMPLACE XXXXXXXX par l'identifiant de ton formulaire Formspree -->
+    <form class="form" id="cf" action="https://formspree.io/f/XXXXXXXX" method="POST">
+      <div class="row">
+        <label>Nom
+          <input type="text" name="nom" autocomplete="name" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <div class="row">
+        <label>Club / quartier (facultatif)
+          <input type="text" name="club">
+        </label>
+        <label>Besoin
+          <select name="besoin">
+            <option>Site vitrine</option>
+            <option>Site multilingue ES / EN / FR</option>
+            <option>Refonte d’un site existant</option>
+            <option>Autre</option>
+          </select>
+        </label>
+      </div>
+      <label>Message
+        <textarea name="message" required></textarea>
+      </label>
+      <!-- piège à robots : doit rester vide -->
+      <label class="hp" aria-hidden="true">Ne pas remplir
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      </label>
+      <button class="btn send" type="submit">Envoyer le message</button>
+      <p class="form-status" id="cfs" role="status" aria-live="polite"></p>
+      <p class="form-note">Vos données servent uniquement à répondre à votre demande et ne sont pas partagées.</p>
+    </form>
+ 
+    <p class="quick">
+      <!-- REMPLACE le numéro (format international, sans + ni espaces) et le compte Instagram -->
+      <a class="btn ghost" href="https://wa.me/34600000000" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="https://www.instagram.com/TON_COMPTE/" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="https://github.com/Leee89010" rel="noopener">GitHub</a>
+    </p>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -425,6 +485,26 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
     z.addEventListener('focusin',function(e){var i=idx(e);if(i!==null){hov=i;show()}});
     z.addEventListener('focusout',function(){hov=null;show()});
     z.addEventListener('click',function(e){var i=idx(e);if(i!==null){stk=(stk===i)?null:i;show()}});
+  });
+})();
+
+<script>
+(function(){
+  var f=document.getElementById('cf');if(!f)return;
+  var st=document.getElementById('cfs'),b=f.querySelector('.send');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    st.className='form-status';st.textContent='Envoi en cours…';b.disabled=true;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+      .then(function(r){
+        if(r.ok){f.reset();st.className='form-status ok';st.textContent='Message envoyé. Merci, je reviens vers vous très vite.'}
+        else throw new Error('http');
+      })
+      .catch(function(){
+        st.className='form-status ko';
+        st.innerHTML='Envoi impossible pour le moment. Écrivez-moi plutôt à <a href="mailto:contact@exemple.com">contact@exemple.com</a>.';
+      })
+      .then(function(){b.disabled=false});
   });
 })();
 </script>
